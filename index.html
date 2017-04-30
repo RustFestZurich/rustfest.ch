@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>RustFest Zürich 2017</title>
+        <style>
+            @font-face { font-family: "ocrb"; src: url("OCRB.ttf"); }
+            html, body { display: flex; padding: 6px; background: #1191df; font-family: 'ocrb'; -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
+
+            h1 { font-size: 66px; }
+            img { width: 256px; min-width: 32%; }
+
+
+            .centering { position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px;
+               display: flex; flex-direction: column;
+            align-items: center; align-content: center; justify-content: space-around; }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    </head>
+    <body class="centering">
+        <h1>RustFest Zürich 2017</h1>
+        <img src="Logo.svg" />
+
+        <div class="loader">
+            <span>{</span><div class="text">organizing ...</div><span>}</span>
+        </div>
+
+        <style>
+.loader {
+  color: #fff;
+
+  font-family: 'ocrb', monospace;
+  font-weight: bold;
+  font-size: 42px;
+
+  opacity: 0.8;
+
+}
+.loader  span {
+    display: inline-block;
+    animation: pulse 0.8s alternate infinite ease-in-out;
+
+  }
+.loader  :last-child {
+      animation-delay: 0.8s;
+    }
+
+.loader  .text { display: inline; font-size: 0.7em; vertical-align: middle; }
+
+@keyframes pulse {
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+        </style>
+    </body>
+</html>

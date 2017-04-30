@@ -1,0 +1,74 @@
+RewriteEngine On
+
+AddDefaultCharset utf-8
+
+<FilesMatch "\.appCache$">
+Header set Expires "Sat, 21 Jan 2016 20:00:00 GMT"
+</FilesMatch>
+## add entity tag
+#FileETag MTime Size
+
+
+RewriteBase /
+
+#RewriteCond %{REMOTE_ADDR} !127\.0\.0\.1
+RewriteCond %{REMOTE_ADDR} !172\.17\.0\.1
+RewriteCond "%{HTTP_HOST}" "^(?:www\.)?(.*)"  [NC]
+RewriteCond "%{HTTPS}"     "!=on"
+RewriteRule "(.*)"         "https://%1/$1"     [R=301,L]
+
+<IfModule mod_deflate.c>
+  # force deflate for mangled headers
+  # developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
+  <IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+
+Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+Header set X-Frame-Options "SAMEORIGIN" env=HTTPS
+Header set X-XSS-Protection "1; mode=block" env=HTTPS
+# Prevent IE and Chrome from incorrectly detecting non-scripts as scripts
+Header set X-Content-Type-Options "nosniff" env=HTTPS
+## Disable unsafe inline/eval, only load resources from same origin, fonts from google, images from same origin and imgur
+#Header set Content-Security-Policy "default-src 'self'; font-src 'https://fonts.googleapis.com'; img-src 'self' https://i.imgur.com" env=HTTPS
+#Header set Content-Security-Policy "default-src https: 'unsafe-inline'; frame-src www.openstreetmap.org; style-src 'self' www.openstreetmap.org; script-src 'self' https: 'unsafe-inline' www.openstreetmap.org;" env=HTTPS
+
+      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    </IfModule>
+  </IfModule>
+
+  # HTML, TXT, CSS, JavaScript, JSON, XML, HTC:
+  <IfModule filter_module>
+
+FilterDeclare   COMPRESS
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'text/html'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'text/css'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'text/plain'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'text/xml'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'text/x-component'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/javascript'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/json'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/xml'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/xhtml+xml'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/rss+xml'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/atom+xml'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/vnd.ms-fontobject'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'image/svg+xml'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'image/x-icon'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'application/x-font-ttf'"
+FilterProvider  COMPRESS  DEFLATE "%{Content_Type} = 'font/opentype'"
+FilterChain     COMPRESS
+FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
+
+  </IfModule>
+</IfModule>
+
+
+#RewriteRule ^api/(.*)$ api.php?q=$1 [QSA,L]
+#
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*) index.php?q=$1 [L]
+#
+
+AddHandler php5-fastcgi .php .php5
