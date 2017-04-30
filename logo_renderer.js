@@ -57,7 +57,7 @@ LogoRenderer.prototype = {
 
         // Clean page
         ctx.fillStyle = '#eee';
-        ctx.fillRect(0,0, width, height);
+        //ctx.fillRect(0,0, width, height);
 
         // Setup relative size
         const inner_radius = size/2
