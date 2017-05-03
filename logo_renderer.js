@@ -23,7 +23,7 @@ const context_flags = {
 const colors = [ '247eff', '66a2f6', 'cabd4b', 'e6da6e', '5252c9', '7f7fe4', '09d4b0', '44f0d1', ];
 const size = 42
     , n_slices = 16
-    , rotation_animation_offset_step = 0.01;
+    , rotation_animation_offset_step = 0.008;
 
 // Poor mans use
 const sin = Math.sin
@@ -32,13 +32,16 @@ const sin = Math.sin
     , pi = Math.PI;
 
 /// Private functions
-function i2pi(i, offset) {
-    return -i * pi * 3 * n_slices / 360 + offset;
+function i2pi(i) {
+    return i / n_slices * 2 * pi;
 }
 
 /// Public functions
 LogoRenderer.prototype = {
     animate: function() {
+        if (this.rotation_animation_offset > pi) {
+            this.rotation_animation_offset -= pi;
+        }
         this.rotation_animation_offset += rotation_animation_offset_step;
     },
 
@@ -74,10 +77,10 @@ LogoRenderer.prototype = {
 
             ctx.beginPath()
 
-            var normal_upper_x = sin(i2pi(i    , rotation_animation_offset))
-              , normal_upper_y = cos(i2pi(i    , rotation_animation_offset));
-            var normal_lower_x = sin(i2pi(i + 1, rotation_animation_offset))
-              , normal_lower_y = cos(i2pi(i + 1, rotation_animation_offset));
+            var normal_upper_x = sin(i2pi(i    ) + rotation_animation_offset)
+              , normal_upper_y = cos(i2pi(i    ) + rotation_animation_offset);
+            var normal_lower_x = sin(i2pi(i + 1) + rotation_animation_offset)
+              , normal_lower_y = cos(i2pi(i + 1) + rotation_animation_offset);
 
             /*console.log([normal_upper_x * inner_radius, normal_upper_y * inner_radius])
             console.log([normal_upper_x * outer_radius, normal_upper_y * outer_radius])
