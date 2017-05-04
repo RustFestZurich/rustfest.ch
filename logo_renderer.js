@@ -3,14 +3,25 @@ function LogoRenderer(selector) {
     this.rotation_animation_offset = 0;
     // TODO resize callback
 
+
+    let powersave = true;
+
     let self = this;
     let animator = () => {
         self.animate();
         self.render();
 
-        requestAnimationFrame(animator);
+        if (powersave) {
+            setTimeout(() => requestAnimationFrame(animator), 1000/30);
+        } else {
+            requestAnimationFrame(animator);
+        }
     };
     requestAnimationFrame(animator);
+
+    navigator.getBattery().then((b) => {
+        powersave = !b.charging;
+    });
 }
 
 (() => {
