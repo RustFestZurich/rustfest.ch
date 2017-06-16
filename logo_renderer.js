@@ -1,7 +1,7 @@
 function LogoRenderer(selector) {
     this.selector = selector;
     this.rotation_animation_offset = 0;
-    this.fancy_triangles = Math.random() < 0.1// || true;
+    this.fancy_triangles = Math.random() < 0.6// || true;
 
     let powersave = true;
 

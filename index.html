@@ -1,10 +1,10 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>RustFest Zürich 2017</title>
+        <title>RustFest Zürich 2017-09-30</title>
         <style>
             @font-face { font-family: "ocrb"; src: url("OCRB.ttf"); }
-            html, body { display: flex; padding: 6px; background: #084f80 /* #084788 */; font-family: 'ocrb'; -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto; overflow-wrap: break-word; min-height: min-content; }
+            html, body { display: flex; padding: 6px; background: #084f80 /* #084788 */; background: linear-gradient( 0deg, #084f80, #084788 ); font-family: 'ocrb'; -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto; overflow-wrap: break-word; min-height: min-content; }
 
             html { font-size: 66px; }
             @media screen and (max-width: 640px) {
@@ -14,8 +14,14 @@
                 html { font-size: 36px; }
             }
 
-            h1 { color: #fff; font-size: 1rem; text-align: center; }
+            h1, h2, h3, div { color: #fff; text-align: center; }
+            h1 { font-size: 1rem; }
+            h2 { font-size: 0.8rem; }
+            h3 { font-size: 0.7rem; }
+            div { font-size: 0.4rem; }
             img { width: 256px; min-width: 32%; }
+            a, a:visited { color: #88f; }
+            a:hover { color: #bbf; }
 
 
             .centering { position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px;
@@ -37,7 +43,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.7, maximum-scale=2.0, user-scalable=yes"/>
     </head>
     <body class="centering">
-        <h1>RustFest Zürich <br> Fall 2017</h1>
+        <h1>RustFest Zürich</h1>
+        <h2>Sa 30.09. and Sun 01.10. 2017</h2>
 
         <div id="overlayed_organizing">
             <canvas></canvas>
@@ -81,5 +88,12 @@
         <script>
             let logo = new LogoRenderer('canvas');
         </script>
+
+        <div>
+            Flollow our <a href="http://blog.rustfest.eu/" target="_blank">Blog</a>
+        </div>
+        <div>
+            Follow us on <a href="https://twitter.com/RustFest" target="_blank">Twitter</a>
+        </div>
     </body>
 </html>
