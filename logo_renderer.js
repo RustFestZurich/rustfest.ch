@@ -3,24 +3,14 @@ function LogoRenderer(selector) {
     this.rotation_animation_offset = 0;
     this.fancy_triangles = Math.random() < 0.6// || true;
 
-    let powersave = true;
-
     let self = this;
     let animator = () => {
         self.animate();
         self.render();
 
-        if (powersave) {
-            setTimeout(() => requestAnimationFrame(animator), 1000/30);
-        } else {
-            requestAnimationFrame(animator);
-        }
+        requestAnimationFrame(animator);
     };
     requestAnimationFrame(animator);
-
-    navigator.getBattery().then((b) => {
-        powersave = !b.charging;
-    });
 }
 
 (() => {
