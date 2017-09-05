@@ -1,0 +1,11 @@
+@font-face { font-family: "ocrb"; src: url("OCRB.ttf"); }
+
+* { margin: 0px; border: 0px none; padding: 0px; }
+
+body { display: flex; }
+
+#left { background: #fee; }
+#right { background: #eff; }
+
+canvas { width: 100%; height: 100%; }
+
