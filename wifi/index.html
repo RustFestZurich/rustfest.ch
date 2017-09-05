@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>WiFi at RustFest Zürich</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.7, maximum-scale=2.0, user-scalable=yes"/>
+    </head>
+    <body class="centering">
+        <section>
+            <h1>
+                <img src="../rustfest.svg" alt="RustFest Logo" />
+                WiFi at RustFest Zürich
+            </h1>
+            <div>
+                Welcome to RustFest Zürich at ETH.
+            </div>
+            
+            <h2>Rules / Code of Conduct</h2>
+            <ul>
+                <li>Be excelent!</li>
+                <li>Use encryption!</li>
+                <li>The network traffic is monitored</li>
+                <li>Torrents are monitored</li>
+                <li>Obey the law of switzerland</li>
+            </ul>
+            <div>
+                By using this network you accept these rules.
+            </div>
+            
+            <h2>Links</h2>
+            <div class="navigation-menu">
+                <a href="http://zurich.rustfest.eu/talks/">Talks</a>
+                <a href="http://zurich.rustfest.eu/schedule/">Schedule</a>
+                <a href="http://zurich.rustfest.eu/location/">Location</a>
+                <a href="http://blog.rustfest.eu/">Blog/News</a>
+            </div>
+        </section>
+        
+        <style>
+* { margin: 0px; border: 0px none; padding: 0px; transition: all .6s ease-out 0s; }
+html {
+    min-height: 100%;
+    background-color: #5252C9;
+    background-image: -webkit-linear-gradient(top, #247EFF,#5252C9);
+    background-image: linear-gradient(to bottom, #247EFF, #5252C9);
+    background-repeat: no-repeat;
+    
+    font-family: "Nimbus Sans";
+}
+
+
+.centering {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+}
+
+section { margin: 23px; border: 2px solid #000; width: 500px; max-width: 720px; background: #fff; color: #000; padding: 23px; }
+h1, h2, h3 { margin-top: 1.2em; margin-bottom: 1.3em; }
+h1 { border-bottom: 1px solid #247EFF; font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.4rem; }
+
+ul { margin: 8px; margin-left: 23px; }
+
+section h1 img { height: 2rem; }
+
+.navigation-menu { display: flex; flex-direction: row; }
+.navigation-menu a { flex-grow: 1; margin: 6px; background: #1872b4; color: #fff; text-align: center; text-decoration: none; padding: 13px; }
+.navigation-menu a:hover { background: #65a4db; }
+
+@media screen and (max-width: 560px) {
+    section { margin: 13px; width: calc(100% - 26px - 4px - 26px); }
+    .navigation-menu { flex-wrap: wrap; }
+}
+        </style>
+    </body>
+</html>
